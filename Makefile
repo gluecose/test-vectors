@@ -3,6 +3,7 @@
 SCHEMA := gluecose-schema.cddl
 
 TESTS := sign1-verify-0000.json
+TESTS += sign1-sign-0000.json
 
 EXTRA := gocose-result-sign1-verify-0000.json
 

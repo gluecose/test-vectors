@@ -93,11 +93,14 @@ the signature and the resulting COSE_Sign1 object.
   have a `nil` payload.  Otherwise (`detached` key missing or `true`), the
   resulting COSE_Sign1 has it as its value.
 
-* The `protectedHeaders` key contains TODO(tho) -- also add test vector
+* If present, the `protectedHeaders` key contains the protected headers as a
+  serialised CBOR map Base16 encoded.
 
-* The `unprotectedHeaders` key contains TODO(tho)
+* If present, the `unprotectedHeaders` key contains the unprotected headers as a
+  serialised CBOR map Base16 encoded.
 
-* The `external` key contains TODO(tho)
+* If present, the `external` key contains the base16 encoded string with any
+  externally supplied data.
 
 * The `tbsHex` key is a Base16 encoded string corresponding to the resulting
   COSE `Sig_Structure` canonically serialised as per [Section 9 of
