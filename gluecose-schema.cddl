@@ -2,9 +2,60 @@ start = TestCaseInput / TestCaseOutput
 
 TestCaseInput = {
   uuid: text ; unique identifier for the test case
-  ? title: text
-  ? description: text
+  title: text
+  description: text
+
+  key: JWK
+  alg: COSEAlgo
+
   operation
+}
+
+operation //= ( "sign1::sign" => Sign1_sign )
+operation //= ( "sign1::verify" => Sign1_verify )
+; operation //= ( "sign::sign" => TODO )
+; operation //= ( "sign::verify" => TODO )
+; operation //= ( "encrypt::encrypt" => TODO )
+; operation //= ( "encrypt::decrypt" => TODO )
+; operation //= ( "encrypt0::encrypt" => TODO )
+; operation //= ( "encrypt0::decrypt" => TODO )
+; operation //= ( "mac::mac" => TODO )
+; operation //= ( "mac::verify" => TODO )
+; operation //= ( "mac0::mac" => TODO )
+; operation //= ( "mac0::verify" => TODO )
+
+TODO = "todo"
+
+Sign1_sign = {
+  ? payload: HexString
+  ? protectedHeaders: CBORBlob
+  ? unprotectedHeaders: CBORBlob
+  ? external: HexString
+  tbsHex: HexString
+  expectedOutput: CBORBlob
+}
+
+Sign1_verify = {
+  taggedCOSESign1: CBORBlob ; tagged COSE Sign1
+  ? external: HexString     ; optional external data
+  shouldVerify: bool        ; whether a successful validation is expected
+}
+
+CBORBlob = {
+  cborHex: HexString  ; base16 encoded byte buffer
+  ? cborDiag: text    ; optional string containing the CBOR diagnostic
+                      ; representation of cborHex
+}
+
+HexString = text .regexp "([a-f0-9]{2})+"
+
+; See https://www.iana.org/assignments/cose/cose.xhtml#algorithms
+COSEAlgo /= "ES256"
+COSEAlgo /= "ES384"
+; COSEAlgo /= TODO
+
+JWK = {
+  + text => text
 }
 
 TestCaseOutput = {
@@ -14,60 +65,16 @@ TestCaseOutput = {
   result: Result
 }
 
-Result /= "success"
-Result /= "skipped"
-Result /= "failure"
+Result /= "pass"
+Result /= "skip"
+Result /= "fail"
 
 Implementation = {
   name: text
   version: text
-  publicRepoURL: text
+  author: [ + text ]
+  homepage: text
   license: text
-}
-
-operation //= ( "sign1" => OpSign1 )
-operation //= ( "sign" => TODO ) 
-operation //= ( "encrypt" => TODO )
-operation //= ( "encrypt0" => TODO )
-operation //= ( "mac" => TODO )
-operation //= ( "mac0" => TODO )
-
-TODO = "todo"
-
-OpSign1 = {
-  input: Sign1Input
-  intermediate: Sign1Intermediate
-  output
-}
-
-output //= ( "expectedOutput" => CBORBlob )
-output //= ( "expectedFailure" => text )  ; failure reason
-
-Sign1Input = {
-  key: JWK
-  alg: SignAlgo
-  payload: HexString
-  protectedHeaders: CBORBlob
-  unprotectedHeaders: CBORBlob
-  ? external: HexString
-}
-
-Sign1Intermediate = {
-  tbsHex: HexString
-}
-
-CBORBlob = {
-  cborHex: HexString
-  cborDiag: text
-}
-
-HexString = text .regexp "([a-f0-9]{2})+"
-
-; See https://www.iana.org/assignments/cose/cose.xhtml#algorithms
-SignAlgo /= "ES256"
-SignAlgo /= "ES384"
-; SignAlgo /= TODO
-
-JWK = {
-  + text => text
+  sourceLang: [ + text ]
+  ? targetLang: [ + text ]
 }

@@ -1,0 +1,16 @@
+{
+  "uuid": "66584A57-390B-4A52-B7B6-B7CA4FC4204F",
+  "implementation": {
+    "name": "go-cose",
+    "version": "0.0.1",
+    "author": [
+      "Greg Guthe",
+      "Contributors to the Veraison project"
+    ],
+    "homepage": "https://github.com/veraison/go-cose",
+    "license": "MPL 2.0",
+    "sourceLang": [ "go" ]
+  },
+  "executionTs": "2022-03-09T14:10:42Z",
+  "result": "pass"
+}
