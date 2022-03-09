@@ -44,6 +44,10 @@ All the keys in the remainder of this section are relative to the
 * If the `external` key is present, load it and Base16 decode it into a byte
   buffer.  This represents what COSE calls "Externally Supplied Data".
 
+* If the `detachedPayload` key is present, load it and Base16 decode it into a
+  byte buffer.  This is to be used when constructing the COSE `Sig_Structure` in
+  lieu of the `nil` payload in the `taggedCOSESign1`.
+
 * Call the verify API exposed by your implementation passing the key, the
   signature scheme, the tagged COSE_Sign1 data, and the optional externally
   supplied data.
@@ -72,13 +76,50 @@ PRNG to make the randomised tests deterministic, and shall implement the
 For the second type, an [alternative](#partial) to the full-blown test is
 specified.
 
+The assumption is that the sign API exposed by the implementation under test
+will use the fields in the `Sign1_sign` object to construct its input.  However,
+we assume that implementations will vary the way in which they consume the test
+case input data: for example, one could assemble all parameters in one single
+object before passing it to the sign interface, another could supply each piece
+separately, etc.  Therefore, here we will only describe the semantics of the
+`Sign1_sign` object fields and let each implementation deal with the details of
+deriving their input parameter(s).  An implementation will then need to go
+through the steps specified in [Section 4.4 of
+RFC9052](https://www.rfc-editor.org/authors/rfc9052.html#section-4.4) to produce
+the signature and the resulting COSE_Sign1 object.
+
+* The `payload` key is a Base16 encoded string corresponding to the payload to
+  be signed.  If the `detached` key is `true`, the resulting COSE_Sign1 will
+  have a `nil` payload.  Otherwise (`detached` key missing or `true`), the
+  resulting COSE_Sign1 has it as its value.
+
+* The `protectedHeaders` key contains TODO(tho) -- also add test vector
+
+* The `unprotectedHeaders` key contains TODO(tho)
+
+* The `external` key contains TODO(tho)
+
+* The `tbsHex` key is a Base16 encoded string corresponding to the resulting
+  COSE `Sig_Structure` canonically serialised as per [Section 9 of
+  RFC9052](https://www.rfc-editor.org/authors/rfc9052.html#section-9).  This is
+  an intermediated value that is normally invisible to the API caller, therefore
+  it is not expected to be used directly by the test driver.  It serves as an
+  aid for the developer.
+
+* The `expectedOutput` key contains a Base16 encoded string corresponding to the
+  tagged (18) CBOR encoded COSE_Sign1 message.
+
 #### Full-blown
 
-See [Section 4.4 of
-RFC9052](https://www.rfc-editor.org/authors/rfc9052.html#section-4.4)
+It is expected that the output of the sign API is compared to the full value
+contained in the `cborHex` field of the `expectedOutput`.  If the two values
+match, set `Result` to `"pass"` in the `TestCaseOutput` payload for this test
+case.  Otherwise set `"fail"`.
 
 #### Partial
 
-See [Section 4.4 of
-RFC9052](https://www.rfc-editor.org/authors/rfc9052.html#section-4.4) up to
-ToBeSigned
+It is expected that the output of the sign API and the value contained in the
+`cborHex` field of the `expectedOutput` are compared up the the 3rd entry of the
+COSE_Sign1 array, i.e., excluding the 4th (signature) field.  If the two values
+match, set `Result` to `"pass"` in the `TestCaseOutput` payload for this test
+case.  Otherwise set `"fail"`.

@@ -27,10 +27,11 @@ operation //= ( "sign1::verify" => Sign1_verify )
 TODO = "todo"
 
 Sign1_sign = {
-  ? payload: HexString
+  payload: HexString
   ? protectedHeaders: CBORBlob
   ? unprotectedHeaders: CBORBlob
   ? external: HexString ; externally supplied data
+  ? detached: bool .default false
   tbsHex: CBORBlob ; CBOR encoded Sig_structure
   expectedOutput: CBORBlob
 }
@@ -38,6 +39,8 @@ Sign1_sign = {
 Sign1_verify = {
   taggedCOSESign1: CBORBlob ; tagged COSE Sign1
   ? external: HexString     ; optional external data
+  ; optional detached payload (only present if payload==nil in taggedCOSESign1)
+  ? detachedPayload: HexString
   shouldVerify: bool        ; whether a successful validation is expected
 }
 
