@@ -65,9 +65,20 @@ There are two types of platforms / implementations considered here:
 1. Those that expose an interface to the PRNG
 1. Those that don't
 
-The first type, in order to make the randomised tests deterministic, MUST use a
-"zero reader" (e.g., `/dev/zero` on UNIX-like OSes) as a PRNG.
+The first type MUST use a "zero reader" (e.g., `/dev/zero` on UNIX-like OSes) as
+PRNG to make the randomised tests deterministic, and shall implement the
+[full-blown](#full-blown) version of the test.
 
-For the second type, an alternative to the fully-fledged test is specified.
+For the second type, an [alternative](#partial) to the full-blown test is
+specified.
 
-TODO
+#### Full-blown
+
+See [Section 4.4 of
+RFC9052](https://www.rfc-editor.org/authors/rfc9052.html#section-4.4)
+
+#### Partial
+
+See [Section 4.4 of
+RFC9052](https://www.rfc-editor.org/authors/rfc9052.html#section-4.4) up to
+ToBeSigned

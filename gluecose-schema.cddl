@@ -30,8 +30,8 @@ Sign1_sign = {
   ? payload: HexString
   ? protectedHeaders: CBORBlob
   ? unprotectedHeaders: CBORBlob
-  ? external: HexString
-  tbsHex: HexString
+  ? external: HexString ; externally supplied data
+  tbsHex: CBORBlob ; CBOR encoded Sig_structure
   expectedOutput: CBORBlob
 }
 
