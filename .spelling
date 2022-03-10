@@ -1,0 +1,23 @@
+# markdown-spellcheck spelling configuration file
+# Format - lines beginning # are comments
+# global dictionary is at the start, file overrides afterwards
+# one word per line, to define a file override use ' - filename'
+# where filename is relative to this configuration file
+GlueCOSE
+CDDL
+Sign1
+go-cose
+JWK
+COSE
+base16
+COSE_Sign1
+CBOR
+boolean
+PRNG
+e.g.
+RFC9052
+serialised
+i.e.
+ - README.md
+18
+4.4

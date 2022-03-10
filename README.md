@@ -39,7 +39,7 @@ All the keys in the remainder of this section are relative to the
   COSE_Sign1 data that needs to be verified.  Load it and Base16 decode it into
   a byte buffer.  (Note that a CBOR diagnostic version of the same exact content
   is optionally provided in the `cborDiag` string within the same `input`.  This
-  is only intended for human consumption and has no bearing on the test logics.)
+  is only intended for human consumption and has no bearing on the test logic.)
 
 * If the `external` key is present, load it and Base16 decode it into a byte
   buffer.  This represents what COSE calls "Externally Supplied Data".
@@ -70,7 +70,7 @@ There are two types of platforms / implementations considered here:
 1. Those that don't
 
 The first type MUST use a "zero reader" (e.g., `/dev/zero` on UNIX-like OSes) as
-PRNG to make the randomised tests deterministic, and shall implement the
+PRNG to make the randomized tests deterministic, and shall implement the
 [deterministic](#deterministic) version of the test.
 
 For the second type, an [alternative](#non-deterministic) to the deterministic
@@ -94,10 +94,10 @@ the signature and the resulting COSE_Sign1 object.
   resulting COSE_Sign1 has it as its value.
 
 * If present, the `protectedHeaders` key contains the protected headers as a
-  serialised CBOR map Base16 encoded.
+  serialized CBOR map Base16 encoded.
 
 * If present, the `unprotectedHeaders` key contains the unprotected headers as a
-  serialised CBOR map Base16 encoded.
+  serialized CBOR map Base16 encoded.
 
 * If present, the `external` key contains the base16 encoded string with any
   externally supplied data.
@@ -105,7 +105,7 @@ the signature and the resulting COSE_Sign1 object.
 * The `tbsHex` key is a Base16 encoded string corresponding to the resulting
   COSE `Sig_Structure` canonically serialised as per [Section 9 of
   RFC9052](https://www.rfc-editor.org/authors/rfc9052.html#section-9).  This is
-  an intermediated value that is normally invisible to the API caller, therefore
+  an intermediate value that is normally invisible to the API caller, therefore
   it is not expected to be used directly by the test driver.  It serves as an
   aid for the developer.
 
