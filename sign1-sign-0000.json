@@ -11,7 +11,7 @@
   },
   "alg": "ES256",
   "sign1::sign": {
-    "payload": "546869732069732074686520636F6E74656E742E",
+    "payload": "546869732069732074686520636f6e74656e742e",
     "protectedHeaders": {
       "cborHex": "a10126",
       "cborDiag": "{1: -7}"
