@@ -71,10 +71,10 @@ There are two types of platforms / implementations considered here:
 
 The first type MUST use a "zero reader" (e.g., `/dev/zero` on UNIX-like OSes) as
 PRNG to make the randomised tests deterministic, and shall implement the
-[full-blown](#full-blown) version of the test.
+[deterministic](#deterministic) version of the test.
 
-For the second type, an [alternative](#partial) to the full-blown test is
-specified.
+For the second type, an [alternative](#non-deterministic) to the deterministic
+test is specified.
 
 The assumption is that the sign API exposed by the implementation under test
 will use the fields in the `Sign1_sign` object to construct its input.  However,
@@ -112,14 +112,14 @@ the signature and the resulting COSE_Sign1 object.
 * The `expectedOutput` key contains a Base16 encoded string corresponding to the
   tagged (18) CBOR encoded COSE_Sign1 message.
 
-#### Full-blown
+#### Deterministic
 
 It is expected that the output of the sign API is compared to the full value
 contained in the `cborHex` field of the `expectedOutput`.  If the two values
 match, set `Result` to `"pass"` in the `TestCaseOutput` payload for this test
 case.  Otherwise set `"fail"`.
 
-#### Partial
+#### Non-deterministic
 
 It is expected that the output of the sign API and the value contained in the
 `cborHex` field of the `expectedOutput` are compared up the the 3rd entry of the
