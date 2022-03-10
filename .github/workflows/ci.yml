@@ -12,6 +12,6 @@ jobs:
         run: gem env gempath ; echo "$(gem env gempath | cut -d':' -f1)/bin" >> $GITHUB_PATH
       - uses: actions/checkout@v2
       - name: test schema against test vectors
-        run: echo ${GITHUB_PATH} ; make tests
+        run: cat ${GITHUB_PATH} ; make tests
       - name: test schema against any extra document
         run: make extra
