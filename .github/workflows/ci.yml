@@ -9,9 +9,9 @@ jobs:
       - name: install cddl 
         run: gem install --user-install cddl
       - name: set up PATH
-        run: gem env gempath ; echo "$(gem env gempath | cut -d':' -f1)/bin" >> $GITHUB_PATH
+        run: echo "$(gem env gempath | cut -d':' -f1)/bin" >> $GITHUB_PATH
       - uses: actions/checkout@v2
       - name: test schema against test vectors
-        run: cat $GITHUB_PATH ; echo $PATH ; make tests
+        run: cddl=cddl mdspell=unused make tests
       - name: test schema against any extra document
-        run: make extra
+        run: cddl=cddl mdspell=unused make extra
