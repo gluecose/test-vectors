@@ -34,6 +34,7 @@ Sign1_sign = {
   ? detached: bool .default false
   tbsHex: CBORBlob ; CBOR encoded Sig_structure
   expectedOutput: CBORBlob
+  fixedOutputLength: uint ; used only for non-deterministic testers
 }
 
 Sign1_verify = {
@@ -80,4 +81,5 @@ Implementation = {
   license: text
   sourceLang: [ + text ]
   ? targetLang: [ + text ]
+  deterministic: bool
 }

@@ -9,7 +9,8 @@
     ],
     "homepage": "https://github.com/veraison/go-cose",
     "license": "MPL 2.0",
-    "sourceLang": [ "go" ]
+    "sourceLang": [ "go" ],
+    "deterministic": true
   },
   "executionTs": "2022-03-09T14:10:42Z",
   "result": "pass"

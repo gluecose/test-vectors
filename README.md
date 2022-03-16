@@ -123,6 +123,9 @@ case.  Otherwise set `"fail"`.
 
 It is expected that the output of the sign API and the value contained in the
 `cborHex` field of the `expectedOutput` are compared up the the 3rd entry of the
-COSE_Sign1 array, i.e., excluding the 4th (signature) field.  If the two values
-match, set `Result` to `"pass"` in the `TestCaseOutput` payload for this test
-case.  Otherwise set `"fail"`.
+COSE_Sign1 array, i.e., excluding the 4th (signature) field.  The
+`fixedOutputLength` field contains the number of bytes of non-randomized output.
+If the two values truncated to `fixedOutputLength` bytes match, set `Result` to
+`"pass"` in the `TestCaseOutput` payload for this test case.  Otherwise set
+`"fail"`.
+
