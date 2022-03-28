@@ -11,7 +11,5 @@ jobs:
       - name: set up PATH
         run: echo "$(gem env gempath | cut -d':' -f1)/bin" >> $GITHUB_PATH
       - uses: actions/checkout@v2
-      - name: test schema against test vectors
-        run: cddl=cddl mdspell=unused make tests
-      - name: test schema against any extra document
-        run: cddl=cddl mdspell=unused make extra
+      - name: test schema against test vectors and any extra document
+        run: cddl=cddl mdspell=unused make check
