@@ -1,7 +1,7 @@
 {
   "uuid": "66584A57-390B-4A52-B7B6-B7CA4FC4204F",
-  "title": "Let's go",
-  "description": "First attempt at drafting a Sign1 test case",
+  "title": "Sign1 w/ external input - ECDSA w/ SHA-256 (verify)",
+  "description": "Verify signature with one signer using ECDSA w/ SHA-256 supplying external input",
   "key": {
     "kty": "EC",
     "crv": "P-256",
