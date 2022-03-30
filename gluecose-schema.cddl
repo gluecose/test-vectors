@@ -57,6 +57,7 @@ HexString = text .regexp "([a-f0-9]{2})+"
 COSEAlgo /= "ES256"
 COSEAlgo /= "ES384"
 COSEAlgo /= "ES512"
+COSEAlgo /= "PS256"
 ; COSEAlgo /= TODO
 
 JWK = {
