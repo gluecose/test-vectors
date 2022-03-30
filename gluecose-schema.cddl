@@ -11,20 +11,26 @@ TestCaseInput = {
   operation
 }
 
+; tag #6.18
 operation //= ( "sign1::sign" => Sign1_sign )
 operation //= ( "sign1::verify" => Sign1_verify )
+;; tag #6.98
 ; operation //= ( "sign::sign" => TODO )
 ; operation //= ( "sign::verify" => TODO )
+;; tag #6.96
 ; operation //= ( "encrypt::encrypt" => TODO )
 ; operation //= ( "encrypt::decrypt" => TODO )
+;; tag #6.16
 ; operation //= ( "encrypt0::encrypt" => TODO )
 ; operation //= ( "encrypt0::decrypt" => TODO )
+;; tag #6.97 
 ; operation //= ( "mac::mac" => TODO )
 ; operation //= ( "mac::verify" => TODO )
+;; tag #6.17
 ; operation //= ( "mac0::mac" => TODO )
 ; operation //= ( "mac0::verify" => TODO )
 
-TODO = "todo"
+; TODO = "todo"
 
 Sign1_sign = {
   payload: HexString
