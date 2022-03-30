@@ -1,5 +1,7 @@
 # GlueCOSE Validation Suite
 
+[![CI](https://github.com/gluecose/test-vectors/actions/workflows/ci.yml/badge.svg)](https://github.com/gluecose/test-vectors/actions/workflows/ci.yml)
+
 **Caution: this is a work in progress in its very early stages.**
 
 This is a repository of GlueCOSE test cases.  Eventually, this will morph in to
