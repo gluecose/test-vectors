@@ -10,9 +10,9 @@ MUSTs and SHOULDs from the COSE RFC.
 
 ### Negative conditions
 
-* outer type is not bstr => rejected by receiver
-* outer type is non-empty bstr but inner type is not map => rejected by receiver
-* outer type is non-empty bstr and inner type is empty map => accepted by receiver even if it's not the preferred encoding
+* [:white_check_mark:](sign1-verify-negative-0000.json) outer type is not bstr => rejected by receiver
+* [:white_check_mark:](sign1-verify-negative-0001.json) outer type is non-empty bstr but inner type is not map => rejected by receiver
+* [ ] outer type is non-empty bstr and inner type is empty map => accepted by receiver even if it's not the preferred encoding
 
 ## Map labels
 
@@ -23,8 +23,8 @@ MUSTs and SHOULDs from the COSE RFC.
 
 ### Negative conditions
 
-* protected header map contains duplicate keys => rejected by receiver
-* unprotected header map contains duplicate keys => rejected by receiver
+* [:white_check_mark:](sign1-verify-negative-0002.json) protected header map contains duplicate keys => rejected by receiver
+* [:white_check_mark:](sign1-verify-negative-0003.json) unprotected header map contains duplicate keys => rejected by receiver
 * label (e.g., alg) occurs in both protected and unprotected with different values => maybe rejected.  if not, value from protected takes precedence (e.g., protected contains the right alg and signature verifies).  Note that the case of "maybe fail" cannot be expressed in the current glucose schema which only allows a boolean choice (`shouldVerify`)
 
 ## `alg`
@@ -34,8 +34,10 @@ MUSTs and SHOULDs from the COSE RFC.
 ### Negative conditions
 
 Assuming no out-of-band channel exists:
-* Sign and Sign1 messages without alg in protected headers => rejected by receiver
-* Sign and Sign1 messages with alg only in unprotected headers => rejected by receiver
+* [:white_check_mark:](sign1-verify-negative-0004.json) Sign1 message without alg in protected headers => rejected by receiver
+*  Sign message without alg in protected headers => rejected by receiver
+* [:white_check_mark:](sign1-verify-negative-0005.json) Sign message with alg only in unprotected headers => rejected by receiver
+* Sign1 message with alg only in unprotected headers => rejected by receiver
 
 ## `crit`
 
@@ -89,6 +91,7 @@ n/a
 
 ### Negative conditions
 
-* CBOR encoding using indefinite lengths => rejected by receiver
-* CBOR encoding not using shortest encoding possible => rejected by receiver
-* map with duplicate entries => rejected by receiver
+* [:white_check_mark:](sign1-verify-negative-0007.json) CBOR encoding using indefinite lengths => rejected by receiver
+* [:white_check_mark:](sign1-verify-negative-0006.json) CBOR encoding not using shortest encoding possible => rejected by receiver
+* [:white_check_mark:](sign1-verify-negative-0002.json) map with duplicate entries (1) => rejected by receiver
+* [:white_check_mark:](sign1-verify-negative-0003.json) map with duplicate entries (2) => rejected by receiver
