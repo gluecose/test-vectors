@@ -91,7 +91,5 @@ n/a
 
 ### Negative conditions
 
-* [:white_check_mark:](sign1-verify-negative-0007.json) CBOR encoding using indefinite lengths => rejected by receiver
-* [:white_check_mark:](sign1-verify-negative-0006.json) CBOR encoding not using shortest encoding possible => rejected by receiver
 * [:white_check_mark:](sign1-verify-negative-0002.json) map with duplicate entries (1) => rejected by receiver
 * [:white_check_mark:](sign1-verify-negative-0003.json) map with duplicate entries (2) => rejected by receiver
