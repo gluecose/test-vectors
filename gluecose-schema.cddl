@@ -64,6 +64,8 @@ COSEAlgo /= "ES256"
 COSEAlgo /= "ES384"
 COSEAlgo /= "ES512"
 COSEAlgo /= "PS256"
+COSEAlgo /= "PS384"
+COSEAlgo /= "PS512"
 ; COSEAlgo /= TODO
 
 JWK = {
